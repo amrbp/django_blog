@@ -1,0 +1,41 @@
+{% extends 'blog/base.htm' %} {% load crispy_forms_tags %} {% load static %} {% block content %}
+<link href="{% static 'css/profile.css'%}" rel="stylesheet" />
+<div class="pt-5 mb-5">
+  <center>
+    <img
+      src="{{user.profile.image.url}}"
+      class="rounded-circle account-img"
+      style="height: 100px; width: 100px"
+    />
+    <div class="media-body">
+      <div class="account-heading">{{user.username}}</div>
+      <p class="text-secondary">{{user.email}}</p>
+    </div>
+  </center>
+</div>
+<div class="w-100 bg-white p-5">
+  <form class="form-group row">
+    {% for post in posts %}
+    <div class="col-6">
+      <div class="card w-100 p-4 mb-4">
+        <div class="row">
+          <div class="col-3"><h5>{{post.author}}</h5></div>
+          <p class="card-subtitle mb-2 text-muted pt-2">
+            | {{post.date_posted}}
+          </p>
+        </div>
+        <a href="{% url 'post-detail' post.id %}">
+          <hr />
+          <img class="card-img-top" src="{{post.image.url}}" width="100%" />
+          <hr />
+          <div class="card-body">
+            <p class="card-text">{{post.content}}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </form>
+</div>
+
+{% endblock content %}

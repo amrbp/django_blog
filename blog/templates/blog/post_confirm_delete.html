@@ -1,0 +1,21 @@
+{% extends 'blog/base.htm' %} {% block content %}
+<div class="container py-5">
+  <form method="POST">
+    {% csrf_token %}
+    <h2 class="text-center">Delete Post</h2>
+    <center>
+      <div class="form-group">
+        <h1></h1>
+        <button class="btn btn-outline-danger" type="submit">
+          Yes, Delete
+        </button>
+        <a href="{% url 'post-detail' object.id %}"
+          ><button class="btn btn-outline-secondary" type="submit">
+            Cencel
+          </button></a
+        >
+      </div>
+    </center>
+  </form>
+</div>
+{% endblock content %}

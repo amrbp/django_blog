@@ -1,0 +1,40 @@
+{% extends 'blog/base.htm' %} {% load static %} {% block content %}
+<link href="{% static 'css/home.css'%}" rel="stylesheet" />
+
+<div class="row pt-4">
+  <div class="col-9">
+    <div class="card w-100 p-4 mb-4">
+      <div class="row">
+        <div class="col-10 pl-5 pt-2">
+          <form class="form-group row">
+            <h5>{{post.author}}</h5> 
+            <p class="card-subtitle mb-2 text-muted pl-3 pt-2">| {{post.date_posted}}</p>
+          </form>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <hr />
+      <img class="card-img-top" src="{{post.image.url}}" width="100%" />
+      <hr />
+      <div class="card-body">
+        <p class="card-text">{{object.content}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    {% if object.author == user %}
+    <a
+      class="btn btn-secondary btn-sm mt-1 mb-1"
+      href="{% url 'post-update' object.id %}"
+      >Update</a
+    >
+    <a
+      class="btn btn-danger btn-sm mt-1 mb-1"
+      href="{% url 'post-delete' object.id %}"
+      >Delete</a
+    >
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}
