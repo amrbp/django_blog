@@ -9,11 +9,12 @@
         <button class="btn btn-outline-danger" type="submit">
           Yes, Delete
         </button>
-        <a href="{% url 'post-detail' object.id %}"
-          ><button class="btn btn-outline-secondary" type="submit">
-            Cencel
-          </button></a
+        <a
+          href="{% url 'post-detail' object.id %}"
+          class="btn btn-outline-secondary"
         >
+          Cencel
+        </a>
       </div>
     </center>
   </form>
