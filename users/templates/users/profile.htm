@@ -17,21 +17,22 @@
   <form class="form-group row">
     {% for post in posts %}
     <div class="col-6">
-      <div class="card w-100 p-4 mb-4">
-        <div class="row">
-          <div class="col-3"><h5>{{post.author}}</h5></div>
-          <p class="card-subtitle mb-2 text-muted pt-2">
-            | {{post.date_posted}}
-          </p>
-        </div>
-        <a href="{% url 'post-detail' post.id %}">
-          <hr />
-          <img class="card-img-top" src="{{post.image.url}}" width="100%" />
-          <hr />
-          <div class="card-body">
-            <p class="card-text">{{post.content}}</p>
+      <div class="card w-100 p-4">
+        <div class="form-group row">
+          <div class="col-6">
+            <h5>{{post.author}}</h5>
+            <p class="card-subtitle text-muted">{{post.date_posted}}</p>
           </div>
+        </div>
+
+        <hr />
+        <a href="{% url 'post-detail' post.id %}">
+          <img class="card-img-top" src="{{post.image.url}}" width="100%" />
         </a>
+        <hr />
+        <div class="card-body">
+          <p class="card-text">{{post.content}}</p>
+        </div>
       </div>
     </div>
     {% endfor %}
