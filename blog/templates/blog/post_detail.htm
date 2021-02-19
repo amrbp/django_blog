@@ -7,8 +7,10 @@
       <div class="row">
         <div class="col-10 pl-5 pt-2">
           <form class="form-group row">
-            <h5>{{post.author}}</h5> 
-            <p class="card-subtitle mb-2 text-muted pl-3 pt-2">| {{post.date_posted}}</p>
+            <h5>{{post.author}}</h5>
+            <p class="card-subtitle mb-2 text-muted pl-3 pt-2">
+              | {{post.date_posted}}
+            </p>
           </form>
         </div>
         <div class="col-1"></div>
@@ -35,6 +37,23 @@
     >
     {% endif %}
   </div>
+  <br />
+  <hr />
+  <br />
+  {% if user.is_authenticated %}
+  <form action="{% url 'like_post' object.id %}" method="POST">
+    {% csrf_token %}
+
+    {% if post_is_liked %}
+    <button type="submit" name="post_id" value="{{object.id}}" class="btn btn-info">Unlike</button>
+    {% else %}
+    <button type="submit" name="post_id" value="{{object.id}}" class="btn btn-info">Like</button>
+    {% endif %}
+  </form>
+{% else %}
+  <a class="btn btn-outline-info" href="{% url 'login' %}?next={{request.path}}">Log in to like this article!</a><br>
+{% endif %}
+<strong class="text-secondary">{{ total_likes }} Like{{ total_likes|pluralize }}</strong>
 </div>
 
 {% endblock content %}

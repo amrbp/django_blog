@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from blog.models import Post
 from django.views.generic import ListView,DetailView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def register(request):
@@ -26,5 +28,4 @@ def profile(request):
         'posts': Post.objects.filter(author_id=current_user).order_by('-date_posted')
     }
     return render(request, 'users/profile.htm', context)
-
 
