@@ -25,27 +25,16 @@
       <hr />
       <div class="row pl-3">
         <div class="col-1">
-          <form action="{% url 'like_post_home' post.id %}" method="POST">
-            {% csrf_token %} {% if post_is_liked %}
+          <a href="{% url 'post-detail' post.id %}">
             <button
               type="submit"
               name="post_id"
               value="{{post.id}}"
               class="btn btn-info btn-sm"
             >
-              Unlike
+              {{ post.likes.count }} Like
             </button>
-            {% else %}
-            <button
-              type="submit"
-              name="post_id"
-              value="{{post.id}}"
-              class="btn btn-info btn-sm"
-            >
-            {{ post.likes.count }} Like
-            </button>
-            {% endif %}
-          </form>
+          </a>
         </div>
         &nbsp;
         <div class="col-4">

@@ -26,15 +26,6 @@ def LikeView(request, pk):
 
     return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 
-def LikeViewHome(request, pk):
-    post = get_object_or_404(Post,id=request.POST.get('post_id'))
-    if post.likes.filter(id=request.user.id).exists():
-        post.likes.remove(request.user)
-    else:
-        post.likes.add(request.user)
-
-    return HttpResponseRedirect(reverse('blog-home', args=[str(pk)]))
-
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.htm'
